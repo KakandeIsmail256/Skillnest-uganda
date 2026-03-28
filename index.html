@@ -2,89 +2,1391 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> -->
-    <!--font awesome CDN-->
-    <title>SKILLNEST UGANDA</title>
-  </head>
+    <meta
+      name="description"
+      content="SkillNest Uganda - Connect skilled youth to short-term jobs, freelance gigs &amp; vocational work in Kampala, Entebbe &amp; beyond."
+    />
+    <title>SkillNest Uganda | Find Work Today</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap");
 
-  <body>
-    <nav class="navbar">
-      <div class="navbar-logo">
-        <h1>SKILLNEST UGANDA</h1>
+      :root {
+        --primary: #00b894;
+      }
+
+      * {
+        transition-property:
+          color, background-color, border-color, text-decoration-color, fill,
+          stroke;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 150ms;
+      }
+
+      .tailwind-ready {
+        font-family: "Inter", system_ui, sans-serif;
+      }
+
+      .logo-font {
+        font-family: "Space Grotesk", sans-serif;
+      }
+
+      .hero-bg {
+        background: linear-gradient(135deg, #00b894 0%, #00a085 100%);
+      }
+
+      .section-header {
+        position: relative;
+      }
+
+      .section-header::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: #00b894;
+        border-radius: 9999px;
+      }
+
+      .modal {
+        animation: modalPop 0.3s ease-out;
+      }
+
+      @keyframes modalPop {
+        0% {
+          transform: scale(0.95);
+          opacity: 0;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      .card-hover {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .card-hover:hover {
+        transform: translateY(-4px);
+        box-shadow:
+          0 20px 25px -5px rgb(0 184 148 / 0.1),
+          0 8px 10px -6px rgb(0 184 148 / 0.1);
+      }
+    </style>
+  </head>
+  <body class="tailwind-ready">
+    <!-- NAVBAR -->
+    <nav class="bg-white border-b sticky top-0 z-50 shadow-sm">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="flex items-center justify-between h-16">
+          <!-- Logo -->
+          <div class="flex items-center gap-2">
+            <div
+              class="w-9 h-9 bg-[#00b894] rounded-2xl flex items-center justify-center text-white text-2xl"
+            >
+              🪺
+            </div>
+            <h1
+              class="logo-font text-2xl font-semibold tracking-tight text-gray-900"
+            >
+              SkillNest
+            </h1>
+            <span
+              class="text-sm font-medium text-[#00b894] bg-[#00b894]/10 px-3 py-1 rounded-full"
+              >Uganda</span
+            >
+          </div>
+
+          <!-- Desktop Menu -->
+          <div class="hidden md:flex items-center gap-x-8 text-sm font-medium">
+            <a
+              href="#create-profile"
+              onclick="showCreateProfileModal()"
+              class="flex items-center gap-1 hover:text-[#00b894]"
+            >
+              <i class="fa-solid fa-user-pen"></i>
+              <span>Create Skill Profile</span>
+            </a>
+            <a
+              href="#find-gigs"
+              class="flex items-center gap-1 hover:text-[#00b894]"
+            >
+              <i class="fa-solid fa-map-marker-alt"></i>
+              <span>Find Gigs Nearby</span>
+            </a>
+            <a
+              href="#earn-grow"
+              class="flex items-center gap-1 hover:text-[#00b894]"
+            >
+              <i class="fa-solid fa-chart-line"></i>
+              <span>Earn &amp; Grow</span>
+            </a>
+            <a href="#browse" class="hover:text-[#00b894]"
+              >Browse Skilled Youth</a
+            >
+            <a href="#top-rated" class="hover:text-[#00b894]">Top Rated</a>
+          </div>
+
+          <div class="flex items-center gap-x-4">
+            <!-- Location -->
+            <div
+              class="flex items-center gap-1 text-sm font-medium px-4 py-2 bg-gray-100 rounded-3xl"
+            >
+              <i class="fa-solid fa-location-dot text-[#00b894]"></i>
+              <span class="text-gray-700" id="current-location"
+                >Kampala, UG</span
+              >
+            </div>
+
+            <!-- Auth buttons -->
+            <button
+              onclick="fakeLogin()"
+              class="px-5 py-2 text-sm font-semibold text-gray-700 hover:text-[#00b894] flex items-center gap-2"
+            >
+              <i class="fa-solid fa-right-to-bracket"></i>
+              Log in
+            </button>
+            <button
+              onclick="showCreateProfileModal()"
+              class="px-6 py-2.5 bg-[#00b894] hover:bg-[#00a085] text-white text-sm font-semibold rounded-3xl flex items-center gap-2 shadow-lg shadow-[#00b894]/30"
+            >
+              <i class="fa-solid fa-plus"></i>
+              Join Free
+            </button>
+
+            <!-- Mobile menu button -->
+            <button
+              onclick="toggleMobileMenu()"
+              class="md:hidden text-2xl text-gray-700"
+            >
+              <i class="fa-solid fa-bars" id="mobile-icon"></i>
+            </button>
+          </div>
+        </div>
       </div>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Browse Skills</a></li>
-        <li><a href="#">Digital Tips</a></li>
-        <li><a href="#">Contact Us</a></li>
-      </ul>
-      <button><a href="#">Log In</a></button>
-      <button><a href="#">Sign Up</a></button>
+
+      <!-- Mobile Menu -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-white border-t px-6 py-4"
+      >
+        <div class="flex flex-col gap-y-4 text-sm font-medium">
+          <a
+            href="#create-profile"
+            onclick="
+              showCreateProfileModal();
+              toggleMobileMenu();
+            "
+            class="flex items-center gap-3 py-3 px-4 hover:bg-gray-100 rounded-2xl"
+          >
+            <i class="fa-solid fa-user-pen w-5"></i>
+            <span>Create Skill Profile</span>
+          </a>
+          <a
+            href="#find-gigs"
+            onclick="toggleMobileMenu()"
+            class="flex items-center gap-3 py-3 px-4 hover:bg-gray-100 rounded-2xl"
+          >
+            <i class="fa-solid fa-map-marker-alt w-5"></i>
+            <span>Find Gigs Nearby</span>
+          </a>
+          <a
+            href="#earn-grow"
+            onclick="toggleMobileMenu()"
+            class="flex items-center gap-3 py-3 px-4 hover:bg-gray-100 rounded-2xl"
+          >
+            <i class="fa-solid fa-chart-line w-5"></i>
+            <span>Earn &amp; Grow</span>
+          </a>
+          <div class="border-t my-2"></div>
+          <button
+            onclick="
+              fakeLogin();
+              toggleMobileMenu();
+            "
+            class="w-full text-left py-3 px-4 hover:bg-gray-100 rounded-2xl flex items-center gap-3"
+          >
+            Log in
+          </button>
+        </div>
+      </div>
     </nav>
-  </body>
-</html>
-<body>
-  <div class="wrapper">
-    <div class="content">
-      <h1>
-        <br />Empowering Digital Skills &<br />
-        <span>Unlocking Potential. </span>
-      </h1>
-      <p>
-        Connecting skilled and semi-skilled youth with short-term<br /><span
-          >jobs and freelance Gigs in the digital economy.</span
+
+    <!-- HERO / INTRO SECTION (your original) -->
+    <section class="hero-bg text-white py-16 md:py-24">
+      <div
+        class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center"
+      >
+        <div>
+          <div
+            class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md text-white text-xs font-medium px-4 py-2 rounded-3xl mb-6"
+          >
+            <i class="fa-solid fa-fire"></i>
+            Now serving 4,872 youth in Kampala &amp; Entebbe
+          </div>
+          <h2
+            class="text-5xl md:text-6xl font-semibold leading-none tracking-tighter mb-6"
+          >
+            Your skills.<br />Your community.<br />Your income.
+          </h2>
+          <p class="text-xl text-white/90 max-w-md mb-8">
+            SkillNest Uganda connects skilled but unemployed youth to short-term
+            jobs, freelance opportunities, and vocational gigs in your local
+            community.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <button
+              onclick="showCreateProfileModal()"
+              class="px-8 py-4 bg-white text-[#00b894] font-semibold rounded-3xl flex items-center gap-3 text-lg shadow-xl"
+            >
+              <i class="fa-solid fa-user-pen"></i>
+              Create My Skill Profile – FREE
+            </button>
+            <a
+              href="#find-gigs"
+              class="px-8 py-4 border-2 border-white text-white font-semibold rounded-3xl flex items-center gap-3 text-lg hover:bg-white/10"
+            >
+              <i class="fa-solid fa-magnifying-glass"></i>
+              Find gigs near me
+            </a>
+          </div>
+          <div class="mt-10 flex items-center gap-8 text-sm">
+            <div class="flex -space-x-4">
+              <div
+                class="w-8 h-8 bg-white rounded-2xl flex items-center justify-center text-[#00b894] ring-2 ring-[#00b894]"
+              >
+                👷
+              </div>
+              <div
+                class="w-8 h-8 bg-white rounded-2xl flex items-center justify-center text-[#00b894] ring-2 ring-[#00b894]"
+              >
+                🧵
+              </div>
+              <div
+                class="w-8 h-8 bg-white rounded-2xl flex items-center justify-center text-[#00b894] ring-2 ring-[#00b894]"
+              >
+                🔨
+              </div>
+            </div>
+            <p class="text-white/80">
+              Trusted by 1,234+ youth earning UGX 800K+ monthly
+            </p>
+          </div>
+        </div>
+
+        <!-- Hero visual -->
+        <div class="hidden md:flex justify-end">
+          <div class="bg-white rounded-3xl shadow-2xl p-6 max-w-xs w-full">
+            <div class="bg-gray-100 rounded-2xl p-4 mb-6 text-center">
+              <p class="text-4xl font-bold text-[#00b894]">UGX 65,000</p>
+              <p class="text-sm text-gray-600">
+                earned this week by <strong>James P.</strong>
+              </p>
+            </div>
+            <div class="space-y-4">
+              <div class="flex items-center justify-between text-sm">
+                <div class="flex items-center gap-3">
+                  <span class="text-3xl">🔨</span>
+                  <div>
+                    <p class="font-medium">Carpentry gig • Kampala</p>
+                    <p class="text-gray-500">2 days • 40k/hr</p>
+                  </div>
+                </div>
+                <span
+                  class="bg-green-100 text-green-700 text-xs font-medium px-3 py-1 rounded-2xl"
+                  >Completed</span
+                >
+              </div>
+              <div class="flex items-center justify-between text-sm">
+                <div class="flex items-center gap-3">
+                  <span class="text-3xl">🧵</span>
+                  <div>
+                    <p class="font-medium">Tailoring order • Entebbe</p>
+                    <p class="text-gray-500">1 day • 25k/hr</p>
+                  </div>
+                </div>
+                <span
+                  class="bg-green-100 text-green-700 text-xs font-medium px-3 py-1 rounded-2xl"
+                  >In progress</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES SECTION (your original + details) -->
+    <section class="py-16 bg-white" id="features">
+      <div class="max-w-7xl mx-auto px-6">
+        <h2 class="text-4xl font-semibold text-center mb-4">
+          3 simple steps to start earning
+        </h2>
+        <p class="text-center text-gray-600 max-w-md mx-auto mb-12">
+          Whether you’re a tailor, carpenter, baker, graphic designer, plumber
+          or electrician – we’ve got you covered.
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Feature 1: Create Skill Profile -->
+          <div
+            onclick="showCreateProfileModal()"
+            class="card-hover bg-white border border-gray-100 rounded-3xl p-8 cursor-pointer"
+          >
+            <div
+              class="w-12 h-12 bg-[#00b894]/10 text-[#00b894] rounded-2xl flex items-center justify-center text-3xl mb-6"
+            >
+              📝
+            </div>
+            <h3 class="text-2xl font-semibold mb-3">Create Skill Profile</h3>
+            <p class="text-gray-600 mb-8">
+              Showcase your skills, experience, photos, tools &amp;
+              availability. Get discovered by clients in your area within
+              minutes.
+            </p>
+            <div
+              class="flex items-center justify-between text-sm font-medium text-[#00b894]"
+            >
+              <span>Take 3 minutes • Free forever</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+            <ul class="mt-6 text-sm space-y-3 text-gray-600">
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-check text-[#00b894]"></i> Upload work
+                photos &amp; certificates
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-check text-[#00b894]"></i> Set your hourly
+                rate in UGX
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-check text-[#00b894]"></i> Choose
+                availability (daily/weekly)
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-check text-[#00b894]"></i> Add location
+                &amp; travel radius
+              </li>
+            </ul>
+          </div>
+
+          <!-- Feature 2: Find Gigs Nearby -->
+          <div
+            onclick="
+              document
+                .getElementById('find-gigs')
+                .scrollIntoView({ behavior: 'smooth' })
+            "
+            class="card-hover bg-white border border-gray-100 rounded-3xl p-8 cursor-pointer"
+          >
+            <div
+              class="w-12 h-12 bg-[#00b894]/10 text-[#00b894] rounded-2xl flex items-center justify-center text-3xl mb-6"
+            >
+              📍
+            </div>
+            <h3 class="text-2xl font-semibold mb-3">Find Gigs Nearby</h3>
+            <p class="text-gray-600 mb-8">
+              Instant search for jobs in Kampala, Entebbe, Wakiso &amp;
+              surrounding areas. Filter by skill, pay rate &amp; distance.
+            </p>
+            <div
+              class="flex items-center justify-between text-sm font-medium text-[#00b894]"
+            >
+              <span>Real-time • 200+ gigs posted daily</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+            <div class="mt-6 grid grid-cols-2 gap-4 text-xs">
+              <div class="bg-gray-50 rounded-2xl p-4">
+                🔨 Carpentry – 40k/hr
+              </div>
+              <div class="bg-gray-50 rounded-2xl p-4">
+                🧵 Tailoring – 25k/hr
+              </div>
+              <div class="bg-gray-50 rounded-2xl p-4">
+                🔌 Electrical – 35k/hr
+              </div>
+              <div class="bg-gray-50 rounded-2xl p-4">🍞 Baking – 30k/hr</div>
+            </div>
+          </div>
+
+          <!-- Feature 3: Earn & Grow -->
+          <div
+            onclick="
+              document
+                .getElementById('earn-grow')
+                .scrollIntoView({ behavior: 'smooth' })
+            "
+            class="card-hover bg-white border border-gray-100 rounded-3xl p-8 cursor-pointer"
+          >
+            <div
+              class="w-12 h-12 bg-[#00b894]/10 text-[#00b894] rounded-2xl flex items-center justify-center text-3xl mb-6"
+            >
+              📈
+            </div>
+            <h3 class="text-2xl font-semibold mb-3">Earn &amp; Grow</h3>
+            <p class="text-gray-600 mb-8">
+              Get paid instantly after every gig. Build reviews, level up your
+              profile &amp; access free training.
+            </p>
+            <div
+              class="flex items-center justify-between text-sm font-medium text-[#00b894]"
+            >
+              <span>Track earnings • Build portfolio</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+            <div class="mt-8 flex gap-4">
+              <div
+                class="flex-1 text-center bg-emerald-50 text-emerald-700 rounded-2xl py-4"
+              >
+                <div class="text-3xl font-bold">UGX 1.2M</div>
+                <div class="text-xs">average monthly earnings</div>
+              </div>
+              <div
+                class="flex-1 text-center bg-amber-50 text-amber-700 rounded-2xl py-4"
+              >
+                <div class="text-3xl font-bold">4.9★</div>
+                <div class="text-xs">average rating after 10 gigs</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CREATE SKILL PROFILE MODAL (FULL DETAILS) -->
+    <div
+      id="create-profile-modal"
+      onclick="
+        if (event.target.id === 'create-profile-modal')
+          hideCreateProfileModal();
+      "
+      class="hidden fixed inset-0 bg-black/60 z-[9999] flex items-center justify-center p-4"
+    >
+      <div
+        onclick="event.stopImmediatePropagation()"
+        class="modal bg-white max-w-2xl w-full rounded-3xl overflow-hidden"
+      >
+        <div class="px-8 pt-8 pb-6 border-b flex items-center justify-between">
+          <h2 class="text-3xl font-semibold">Create Your Skill Profile</h2>
+          <button
+            onclick="hideCreateProfileModal()"
+            class="text-3xl text-gray-400 hover:text-gray-600"
+          >
+            ×
+          </button>
+        </div>
+
+        <form
+          id="profile-form"
+          onsubmit="submitProfile(event)"
+          class="p-8 space-y-8"
         >
-      </p>
-      <div class="search-container">
-        <input type="text" placeholder="Search for skills..." />
-        <input type="text" placeholder="Location..." />
-        <input type="text" placeholder="Budget...." />
-        <button>Search</button>
+          <div class="grid grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-medium mb-2">Full Name</label>
+              <input
+                type="text"
+                id="name"
+                value="Brian Muwanguzi"
+                class="w-full border border-gray-300 focus:border-[#00b894] rounded-2xl px-4 py-3 text-sm"
+                required
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-2">Phone Number</label>
+              <input
+                type="tel"
+                id="phone"
+                value="0784 123 456"
+                class="w-full border border-gray-300 focus:border-[#00b894] rounded-2xl px-4 py-3 text-sm"
+                required
+              />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium mb-2"
+              >Primary Skill (you can add more later)</label
+            >
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+              <label
+                class="skill-tag flex items-center justify-center border border-gray-300 rounded-2xl px-4 py-3 cursor-pointer hover:border-[#00b894] has-[:checked]:border-[#00b894] has-[:checked]:bg-[#00b894]/5"
+              >
+                <input
+                  type="radio"
+                  name="primary_skill"
+                  value="Carpenter"
+                  class="hidden"
+                />
+                🔨 Carpenter
+              </label>
+              <label
+                class="skill-tag flex items-center justify-center border border-gray-300 rounded-2xl px-4 py-3 cursor-pointer hover:border-[#00b894] has-[:checked]:border-[#00b894] has-[:checked]:bg-[#00b894]/5"
+              >
+                <input
+                  type="radio"
+                  name="primary_skill"
+                  value="Tailor"
+                  class="hidden"
+                />
+                🧵 Tailor
+              </label>
+              <label
+                class="skill-tag flex items-center justify-center border border-gray-300 rounded-2xl px-4 py-3 cursor-pointer hover:border-[#00b894] has-[:checked]:border-[#00b894] has-[:checked]:bg-[#00b894]/5"
+              >
+                <input
+                  type="radio"
+                  name="primary_skill"
+                  value="Plumber"
+                  class="hidden"
+                  checked
+                />
+                🚰 Plumber
+              </label>
+              <label
+                class="skill-tag flex items-center justify-center border border-gray-300 rounded-2xl px-4 py-3 cursor-pointer hover:border-[#00b894] has-[:checked]:border-[#00b894] has-[:checked]:bg-[#00b894]/5"
+              >
+                <input
+                  type="radio"
+                  name="primary_skill"
+                  value="Graphic Designer"
+                  class="hidden"
+                />
+                💻 Graphic Designer
+              </label>
+              <!-- More skills can be added here -->
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-medium mb-2">Location</label>
+              <select
+                id="location"
+                class="w-full border border-gray-300 focus:border-[#00b894] rounded-2xl px-4 py-3 text-sm"
+              >
+                <option value="Kampala">Kampala</option>
+                <option value="Entebbe">Entebbe</option>
+                <option value="Wakiso">Wakiso</option>
+                <option value="Mukono">Mukono</option>
+                <option value="Jinja">Jinja</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-2"
+                >Hourly Rate (UGX)</label
+              >
+              <input
+                type="number"
+                id="rate"
+                value="40000"
+                class="w-full border border-gray-300 focus:border-[#00b894] rounded-2xl px-4 py-3 text-sm"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium mb-2"
+              >Years of Experience</label
+            >
+            <div class="flex gap-2">
+              <button
+                type="button"
+                onclick="setExperience(1)"
+                class="exp-btn flex-1 py-3 border rounded-2xl text-sm font-medium"
+              >
+                1 year
+              </button>
+              <button
+                type="button"
+                onclick="setExperience(2)"
+                class="exp-btn flex-1 py-3 border rounded-2xl text-sm font-medium"
+              >
+                2 years
+              </button>
+              <button
+                type="button"
+                onclick="setExperience(3)"
+                class="exp-btn flex-1 py-3 border rounded-2xl text-sm font-medium bg-[#00b894] text-white"
+              >
+                3+ years
+              </button>
+              <button
+                type="button"
+                onclick="setExperience(5)"
+                class="exp-btn flex-1 py-3 border rounded-2xl text-sm font-medium"
+              >
+                5+ years
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium mb-2"
+              >Short Bio / What clients should know</label
+            >
+            <textarea
+              id="bio"
+              rows="3"
+              class="w-full border border-gray-300 focus:border-[#00b894] rounded-3xl px-4 py-3 text-sm"
+            >
+Reliable plumber with own tools. Specialize in water heaters, drainage &amp; bathroom installations. Available daily in Kampala Central.</textarea
+            >
+          </div>
+
+          <div class="flex items-center justify-between pt-4 border-t">
+            <p class="text-xs text-gray-500">
+              Your profile will be visible to clients immediately
+            </p>
+            <button
+              type="submit"
+              class="px-10 py-4 bg-[#00b894] text-white font-semibold rounded-3xl flex items-center gap-2"
+            >
+              Publish Profile
+              <i class="fa-solid fa-paper-plane"></i>
+            </button>
+          </div>
+        </form>
       </div>
     </div>
-    <img class="IMAGE" src="IMAGE/image001.png" />
-  </div>
-</body>
-<header>
-  <h1>Welcome to SkillNest Uganda</h1>
-  <p>
-    SkillNest Uganda is an online platform that connects skilled but unemployed
-    youth to short-term jobs, freelance opportunities, and vocational gigs in
-    their local communities. Whetheryou’re a tailor, carpenter, baker, graphic
-    designer, or plumber, Software Engineer,Web Developer, Teacher,start finding
-    work today.
-  </p>
-</header>
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>SkillNest Boxes</title>
 
-    <!-- Link CSS file -->
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="container">
-      <!-- Box 1 -->
-      <div class="card">
-        <h3>Create Skill Profile</h3>
-        <p>Showcase your skills and get noticed by clients.</p>
-      </div>
+    <!-- FIND GIGS NEARBY SECTION (FULL INTERACTIVE) -->
+    <section id="find-gigs" class="py-16 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-6">
+        <div
+          class="flex flex-col md:flex-row md:items-end justify-between mb-10"
+        >
+          <div>
+            <h2 class="section-header text-4xl font-semibold">
+              Find Gigs Nearby
+            </h2>
+            <p class="text-gray-600 mt-2">
+              Real-time opportunities within 30 km of Kampala
+            </p>
+          </div>
 
-      <!-- Box 2 -->
-      <div class="card">
-        <h3>Find Gigs Nearby</h3>
-        <p>Locate jobs in your area with a quick search.</p>
-      </div>
+          <!-- Filters -->
+          <div class="flex flex-wrap gap-3 mt-6 md:mt-0">
+            <select
+              id="gig-skill-filter"
+              onchange="filterGigs()"
+              class="border border-gray-300 rounded-3xl px-5 py-2 text-sm"
+            >
+              <option value="">All Skills</option>
+              <option value="Plumber">Plumber</option>
+              <option value="Carpenter">Carpenter</option>
+              <option value="Tailor">Tailor</option>
+              <option value="Electrician">Electrician</option>
+              <option value="Baker">Baker</option>
+            </select>
 
-      <!-- Box 3 -->
-      <div class="card">
-        <h3>Earn & Grow</h3>
-        <p>Gain experience and build your income.</p>
+            <select
+              id="gig-location-filter"
+              onchange="filterGigs()"
+              class="border border-gray-300 rounded-3xl px-5 py-2 text-sm"
+            >
+              <option value="">Any Location</option>
+              <option value="Kampala" selected>Kampala</option>
+              <option value="Entebbe">Entebbe</option>
+              <option value="Wakiso">Wakiso</option>
+            </select>
+
+            <div
+              class="flex items-center gap-2 bg-white border border-gray-300 rounded-3xl px-5 py-2"
+            >
+              <i class="fa-solid fa-uganda"></i>
+              <input
+                id="min-budget"
+                type="text"
+                placeholder="Min UGX"
+                value="20000"
+                class="w-20 text-sm focus:outline-none"
+                onkeyup="filterGigs()"
+              />
+            </div>
+
+            <button
+              onclick="filterGigs()"
+              class="px-8 py-2 bg-[#00b894] text-white rounded-3xl flex items-center gap-2 font-medium"
+            >
+              <i class="fa-solid fa-magnifying-glass"></i>
+              Search
+            </button>
+          </div>
+        </div>
+
+        <!-- Gig Results -->
+        <div id="gig-results" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Populated by JavaScript below -->
+        </div>
+
+        <div id="no-gigs" class="hidden text-center py-12">
+          <p class="text-6xl mb-4">😕</p>
+          <p class="font-medium">No gigs match your filters right now.</p>
+          <p class="text-sm text-gray-500">
+            Try broadening your search or check back in 30 minutes.
+          </p>
+        </div>
       </div>
-    </div>
+    </section>
+
+    <!-- EARN & GROW SECTION (FULL DETAILS) -->
+    <section id="earn-grow" class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid md:grid-cols-12 gap-12">
+          <div class="md:col-span-5">
+            <h2 class="section-header text-4xl font-semibold mb-6">
+              Earn today.<br />Grow tomorrow.
+            </h2>
+            <div class="space-y-8">
+              <div class="flex gap-6">
+                <div class="text-5xl">💰</div>
+                <div>
+                  <h4 class="font-semibold text-xl">Instant payments</h4>
+                  <p class="text-gray-600">
+                    Get paid directly to your mobile money (MTN/Airtel) within 2
+                    hours of job completion. No waiting weeks.
+                  </p>
+                </div>
+              </div>
+              <div class="flex gap-6">
+                <div class="text-5xl">⭐</div>
+                <div>
+                  <h4 class="font-semibold text-xl">Build your reputation</h4>
+                  <p class="text-gray-600">
+                    Every completed gig earns you verified reviews. Top-rated
+                    youth get priority matching &amp; higher rates.
+                  </p>
+                </div>
+              </div>
+              <div class="flex gap-6">
+                <div class="text-5xl">📚</div>
+                <div>
+                  <h4 class="font-semibold text-xl">Free skill upgrades</h4>
+                  <p class="text-gray-600">
+                    Access weekly WhatsApp training sessions on business skills,
+                    pricing, customer service &amp; new tools.
+                  </p>
+                </div>
+              </div>
+              <div class="flex gap-6">
+                <div class="text-5xl">👥</div>
+                <div>
+                  <h4 class="font-semibold text-xl">
+                    Community &amp; referrals
+                  </h4>
+                  <p class="text-gray-600">
+                    Join our private youth network. Refer friends and earn UGX
+                    10,000 bonus per successful signup.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <a
+              href="#"
+              onclick="fakeSuccessStory()"
+              class="mt-10 inline-flex items-center gap-3 text-[#00b894] font-medium"
+            >
+              See real earnings stories from Kampala youth →
+            </a>
+          </div>
+
+          <!-- Success stories sidebar -->
+          <div class="md:col-span-7 bg-gray-50 rounded-3xl p-8">
+            <h3 class="font-semibold mb-6 text-lg">
+              Real youth earning real money this month
+            </h3>
+            <div class="space-y-6">
+              <div class="flex gap-5 bg-white rounded-3xl p-6">
+                <div class="text-4xl">🔨</div>
+                <div class="flex-1">
+                  <div class="flex justify-between">
+                    <p><strong>James P. – Plumber</strong></p>
+                    <p class="text-[#00b894] font-semibold">UGX 1,850,000</p>
+                  </div>
+                  <p class="text-xs text-gray-500">
+                    15 gigs completed • Kampala Central
+                  </p>
+                  <div class="flex items-center text-amber-400 text-sm mt-2">
+                    ★★★★★
+                  </div>
+                </div>
+              </div>
+              <div class="flex gap-5 bg-white rounded-3xl p-6">
+                <div class="text-4xl">🧵</div>
+                <div class="flex-1">
+                  <div class="flex justify-between">
+                    <p><strong>Sarah K. – Tailor</strong></p>
+                    <p class="text-[#00b894] font-semibold">UGX 920,000</p>
+                  </div>
+                  <p class="text-xs text-gray-500">
+                    8 gigs completed • Entebbe
+                  </p>
+                  <div class="flex items-center text-amber-400 text-sm mt-2">
+                    ★★★★☆
+                  </div>
+                </div>
+              </div>
+              <div class="flex gap-5 bg-white rounded-3xl p-6">
+                <div class="text-4xl">💻</div>
+                <div class="flex-1">
+                  <div class="flex justify-between">
+                    <p><strong>Peter O. – Graphic Designer</strong></p>
+                    <p class="text-[#00b894] font-semibold">UGX 1,450,000</p>
+                  </div>
+                  <p class="text-xs text-gray-500">
+                    12 gigs completed • Online + Kampala
+                  </p>
+                  <div class="flex items-center text-amber-400 text-sm mt-2">
+                    ★★★★★
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOP RATED YOUTH (your original + more) -->
+    <section id="top-rated" class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-6">
+        <h3 class="section-header text-4xl font-semibold mb-8">
+          Top Rated Youth This Week
+        </h3>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          <!-- Your original + extras -->
+          <div class="bg-white border rounded-3xl p-6 card-hover">
+            <p class="font-semibold text-lg">James P.</p>
+            <p class="text-sm text-gray-500">Plumber • Kampala</p>
+            <div class="flex text-amber-400 my-3">
+              ★★★★★
+              <span class="ml-2 text-sm text-gray-500">5.0 (42 reviews)</span>
+            </div>
+            <button
+              onclick="viewProfile('James P.')"
+              class="w-full py-3 text-sm font-medium border border-[#00b894] text-[#00b894] rounded-3xl"
+            >
+              View Profile
+            </button>
+          </div>
+          <div class="bg-white border rounded-3xl p-6 card-hover">
+            <p class="font-semibold text-lg">Brian M.</p>
+            <p class="text-sm text-gray-500">Carpenter • Kampala</p>
+            <div class="flex text-amber-400 my-3">
+              ★★★★☆
+              <span class="ml-2 text-sm text-gray-500">4.8 (31 reviews)</span>
+            </div>
+            <button
+              onclick="viewProfile('Brian M.')"
+              class="w-full py-3 text-sm font-medium border border-[#00b894] text-[#00b894] rounded-3xl"
+            >
+              View Profile
+            </button>
+          </div>
+          <div class="bg-white border rounded-3xl p-6 card-hover">
+            <p class="font-semibold text-lg">Sarah K.</p>
+            <p class="text-sm text-gray-500">Tailor • Entebbe</p>
+            <div class="flex text-amber-400 my-3">
+              ★★★★★
+              <span class="ml-2 text-sm text-gray-500">5.0 (19 reviews)</span>
+            </div>
+            <button
+              onclick="viewProfile('Sarah K.')"
+              class="w-full py-3 text-sm font-medium border border-[#00b894] text-[#00b894] rounded-3xl"
+            >
+              View Profile
+            </button>
+          </div>
+          <div class="bg-white border rounded-3xl p-6 card-hover">
+            <p class="font-semibold text-lg">Fatima N.</p>
+            <p class="text-sm text-gray-500">Baker • Wakiso</p>
+            <div class="flex text-amber-400 my-3">
+              ★★★★☆
+              <span class="ml-2 text-sm text-gray-500">4.9 (27 reviews)</span>
+            </div>
+            <button
+              onclick="viewProfile('Fatima N.')"
+              class="w-full py-3 text-sm font-medium border border-[#00b894] text-[#00b894] rounded-3xl"
+            >
+              View Profile
+            </button>
+          </div>
+          <div class="bg-white border rounded-3xl p-6 card-hover">
+            <p class="font-semibold text-lg">David S.</p>
+            <p class="text-sm text-gray-500">Electrician • Kampala</p>
+            <div class="flex text-amber-400 my-3">
+              ★★★★★
+              <span class="ml-2 text-sm text-gray-500">5.0 (14 reviews)</span>
+            </div>
+            <button
+              onclick="viewProfile('David S.')"
+              class="w-full py-3 text-sm font-medium border border-[#00b894] text-[#00b894] rounded-3xl"
+            >
+              View Profile
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BROWSE SKILLED YOUTH (your original + interactive) -->
+    <section id="browse" class="py-16 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-6">
+        <h3 class="section-header text-4xl font-semibold mb-2">
+          Browse Skilled Youth
+        </h3>
+        <p class="mb-8 text-gray-600">
+          All Skills | Location | Budget • Updated live
+        </p>
+
+        <div class="flex flex-wrap gap-3 mb-8">
+          <button
+            onclick="filterBrowse(this)"
+            data-filter="all"
+            class="active-filter px-6 py-2 rounded-3xl border text-sm font-medium bg-[#00b894] text-white"
+          >
+            All Skills
+          </button>
+          <button
+            onclick="filterBrowse(this)"
+            data-filter="Carpenter"
+            class="px-6 py-2 rounded-3xl border text-sm font-medium"
+          >
+            Carpenter
+          </button>
+          <button
+            onclick="filterBrowse(this)"
+            data-filter="Tailor"
+            class="px-6 py-2 rounded-3xl border text-sm font-medium"
+          >
+            Tailor
+          </button>
+          <button
+            onclick="filterBrowse(this)"
+            data-filter="Plumber"
+            class="px-6 py-2 rounded-3xl border text-sm font-medium"
+          >
+            Plumber
+          </button>
+          <button
+            onclick="filterBrowse(this)"
+            data-filter="Designer"
+            class="px-6 py-2 rounded-3xl border text-sm font-medium"
+          >
+            Graphic Designer
+          </button>
+        </div>
+
+        <div id="browse-grid" class="grid md:grid-cols-3 gap-6">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-white py-16">
+      <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-10">
+        <div>
+          <div class="flex items-center gap-2 mb-6">
+            <div
+              class="w-9 h-9 bg-[#00b894] rounded-2xl flex items-center justify-center text-white text-2xl"
+            >
+              🪺
+            </div>
+            <h1 class="logo-font text-3xl font-semibold">SkillNest Uganda</h1>
+          </div>
+          <p class="text-gray-400 text-sm">
+            Connecting Uganda’s talented youth to work that matters.
+          </p>
+          <p class="text-xs mt-8 text-gray-400">
+            © 2026 SkillNest Uganda. All rights reserved.
+          </p>
+        </div>
+        <div>
+          <p class="font-medium mb-4">For Youth</p>
+          <ul class="space-y-3 text-sm text-gray-400">
+            <li>Create Skill Profile</li>
+            <li>Find Gigs Nearby</li>
+            <li>Earn &amp; Grow</li>
+            <li>Success Stories</li>
+          </ul>
+        </div>
+        <div>
+          <p class="font-medium mb-4">For Employers / Clients</p>
+          <ul class="space-y-3 text-sm text-gray-400">
+            <li>Post a Gig</li>
+            <li>Browse Youth Profiles</li>
+            <li>Verified Reviews</li>
+          </ul>
+        </div>
+        <div>
+          <p class="font-medium mb-4">Get in touch</p>
+          <p class="text-sm text-gray-400">Kampala, Uganda</p>
+          <a href="tel:0784123456" class="block text-[#00b894] mt-2"
+            >+256 784 123 456</a
+          >
+          <a href="#" class="block text-[#00b894]">hello@skillnest.ug</a>
+          <div class="flex gap-6 mt-8">
+            <i class="fa-brands fa-whatsapp text-2xl"></i>
+            <i class="fa-brands fa-facebook text-2xl"></i>
+            <i class="fa-brands fa-x-twitter text-2xl"></i>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Tailwind initialization
+      function initializeTailwind() {
+        return {
+          config(userConfig = {}) {
+            return {
+              configUser: userConfig,
+              theme: {
+                extend: {
+                  colors: {
+                    primary: "#00b894",
+                  },
+                },
+              },
+            };
+          },
+          theme(userTheme = {}) {
+            return {
+              ...this.defaultTheme(),
+              ...userTheme,
+            };
+          },
+          defaultTheme() {
+            return {
+              extend: {},
+            };
+          },
+        };
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const config = initializeTailwind().config();
+        return document.documentElement.setAttribute(
+          "data-tailwind-config",
+          JSON.stringify(config),
+        );
+      });
+
+      // Mock gigs data
+      let allGigs = [
+        {
+          id: 1,
+          title: "Install water heater &amp; fix drainage",
+          skill: "Plumber",
+          location: "Kampala",
+          budget: 45000,
+          duration: "1 day",
+          posted: "2 hours ago",
+          emoji: "🚰",
+        },
+        {
+          id: 2,
+          title: "Build custom wardrobe for bedroom",
+          skill: "Carpenter",
+          location: "Kampala",
+          budget: 120000,
+          duration: "3 days",
+          posted: "Yesterday",
+          emoji: "🔨",
+        },
+        {
+          id: 3,
+          title: "Sew 20 school uniforms urgently",
+          skill: "Tailor",
+          location: "Entebbe",
+          budget: 25000,
+          duration: "2 days",
+          posted: "4 hours ago",
+          emoji: "🧵",
+        },
+        {
+          id: 4,
+          title: "Wiring for new solar installation",
+          skill: "Electrician",
+          location: "Wakiso",
+          budget: 80000,
+          duration: "2 days",
+          posted: "Today",
+          emoji: "🔌",
+        },
+        {
+          id: 5,
+          title: "Bake 100 cupcakes for wedding",
+          skill: "Baker",
+          location: "Kampala",
+          budget: 35000,
+          duration: "1 day",
+          posted: "Yesterday",
+          emoji: "🍰",
+        },
+      ];
+
+      // Mock browse profiles
+      let allProfiles = [
+        {
+          name: "Brian M.",
+          skill: "Carpenter",
+          location: "Kampala",
+          rate: "40000",
+          emoji: "🔨",
+        },
+        {
+          name: "Sarah K.",
+          skill: "Tailor",
+          location: "Entebbe",
+          rate: "25000",
+          emoji: "🧵",
+        },
+        {
+          name: "James P.",
+          skill: "Plumber",
+          location: "Kampala",
+          rate: "45000",
+          emoji: "🚰",
+        },
+        {
+          name: "Fatima N.",
+          skill: "Baker",
+          location: "Wakiso",
+          rate: "30000",
+          emoji: "🍞",
+        },
+        {
+          name: "David S.",
+          skill: "Electrician",
+          location: "Kampala",
+          rate: "38000",
+          emoji: "🔌",
+        },
+        {
+          name: "Aisha M.",
+          skill: "Graphic Designer",
+          location: "Entebbe",
+          rate: "35000",
+          emoji: "💻",
+        },
+      ];
+
+      function renderGigs(filteredGigs) {
+        const container = document.getElementById("gig-results");
+        container.innerHTML = "";
+
+        if (filteredGigs.length === 0) {
+          document.getElementById("no-gigs").classList.remove("hidden");
+          return;
+        }
+
+        document.getElementById("no-gigs").classList.add("hidden");
+
+        filteredGigs.forEach((gig) => {
+          const card = document.createElement("div");
+          card.className = "bg-white rounded-3xl p-6 card-hover flex flex-col";
+          card.innerHTML = `
+                    <div class="flex justify-between mb-4">
+                        <span class="text-4xl">${gig.emoji}</span>
+                        <span class="text-xs bg-emerald-100 text-emerald-700 px-3 h-fit rounded-3xl flex items-center">${gig.posted}</span>
+                    </div>
+                    <h4 class="font-semibold text-lg leading-tight mb-1">${gig.title}</h4>
+                    <p class="text-sm text-gray-500">${gig.skill} • ${gig.location}</p>
+                    <div class="mt-auto pt-6 flex justify-between items-end">
+                        <div>
+                            <span class="text-xs text-gray-400">Budget</span>
+                            <p class="font-bold text-2xl text-[#00b894]">UGX ${gig.budget.toLocaleString()}</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-xs text-gray-400">Duration</span>
+                            <p class="font-medium">${gig.duration}</p>
+                        </div>
+                        <button onclick="applyToGig(${gig.id}); event.stopImmediatePropagation()" 
+                                class="px-8 py-3 bg-[#00b894] text-white text-sm font-medium rounded-3xl">Apply Now</button>
+                    </div>
+                `;
+          container.appendChild(card);
+        });
+      }
+
+      function filterGigs() {
+        const skillFilter = document.getElementById("gig-skill-filter").value;
+        const locationFilter = document.getElementById(
+          "gig-location-filter",
+        ).value;
+        const minBudget =
+          parseInt(document.getElementById("min-budget").value) || 0;
+
+        const filtered = allGigs.filter((gig) => {
+          const matchesSkill = !skillFilter || gig.skill === skillFilter;
+          const matchesLocation =
+            !locationFilter || gig.location === locationFilter;
+          const matchesBudget = gig.budget >= minBudget;
+          return matchesSkill && matchesLocation && matchesBudget;
+        });
+
+        renderGigs(filtered);
+      }
+
+      function renderBrowseProfiles(filteredProfiles) {
+        const container = document.getElementById("browse-grid");
+        container.innerHTML = "";
+
+        filteredProfiles.forEach((profile) => {
+          const div = document.createElement("div");
+          div.className = "bg-white border rounded-3xl p-6 card-hover";
+          div.innerHTML = `
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <span class="text-4xl">${profile.emoji}</span>
+                            <div>
+                                <p class="font-semibold">${profile.name}</p>
+                                <p class="text-sm text-gray-500">${profile.skill}</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xs text-gray-400">Rate</p>
+                            <p class="font-bold text-[#00b894]">UGX ${profile.rate}/hr</p>
+                        </div>
+                    </div>
+                    <p class="text-xs mt-6 flex items-center gap-1"><i class="fa-solid fa-location-dot"></i> ${profile.location}</p>
+                    <button onclick="viewProfile('${profile.name}')" class="mt-8 w-full py-3 border border-[#00b894] text-[#00b894] rounded-3xl text-sm font-medium">View full profile</button>
+                `;
+          container.appendChild(div);
+        });
+
+        if (filteredProfiles.length === 0) {
+          container.innerHTML = `<p class="col-span-full text-center py-12 text-gray-400">No profiles found</p>`;
+        }
+      }
+
+      function filterBrowse(btn) {
+        // Remove active from all
+        document
+          .querySelectorAll("#browse-grid ~ .flex button")
+          .forEach((b) =>
+            b.classList.remove("active-filter", "bg-[#00b894]", "text-white"),
+          );
+        btn.classList.add("active-filter", "bg-[#00b894]", "text-white");
+
+        const filter = btn.getAttribute("data-filter");
+
+        let filtered = allProfiles;
+        if (filter !== "all") {
+          filtered = allProfiles.filter((p) =>
+            p.skill.toLowerCase().includes(filter.toLowerCase()),
+          );
+        }
+
+        renderBrowseProfiles(filtered);
+      }
+
+      // Profile form submission
+      function submitProfile(e) {
+        e.preventDefault();
+
+        const name = document.getElementById("name").value;
+        alert(
+          `✅ Congratulations ${name}!\n\nYour Skill Profile has been published!\n\nYou are now visible to clients in your area.\n\nCheck your dashboard for new gig matches.`,
+        );
+
+        hideCreateProfileModal();
+
+        // Simulate profile added to browse
+        setTimeout(() => {
+          allProfiles.unshift({
+            name: name.split(" ")[0],
+            skill: document.querySelector('input[name="primary_skill"]:checked')
+              .value,
+            location: document.getElementById("location").value,
+            rate: document.getElementById("rate").value,
+            emoji: "🛠️",
+          });
+          renderBrowseProfiles(allProfiles);
+        }, 800);
+      }
+
+      function showCreateProfileModal() {
+        document
+          .getElementById("create-profile-modal")
+          .classList.remove("hidden");
+        document.getElementById("create-profile-modal").classList.add("flex");
+      }
+
+      function hideCreateProfileModal() {
+        const modal = document.getElementById("create-profile-modal");
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+      }
+
+      function setExperience(years) {
+        document
+          .querySelectorAll(".exp-btn")
+          .forEach((btn) => btn.classList.remove("bg-[#00b894]", "text-white"));
+        event.currentTarget.classList.add("bg-[#00b894]", "text-white");
+      }
+
+      function applyToGig(id) {
+        const gig = allGigs.find((g) => g.id === id);
+        if (gig) {
+          alert(
+            `🎉 Application sent!\n\nYou applied to: ${gig.title}\nLocation: ${gig.location}\n\nThe client will contact you within 30 minutes via WhatsApp.\n\nKeep an eye on your SkillNest messages!`,
+          );
+        }
+      }
+
+      function viewProfile(name) {
+        alert(
+          `📋 Profile of ${name}\n\nYou would see full portfolio, reviews, availability calendar &amp; contact button here.\n\n(Full profile page would open in a real website)`,
+        );
+      }
+
+      function fakeLogin() {
+        alert(
+          "🔑 Logged in as Brian Muwanguzi (Kampala)\n\nWelcome back! You have 3 new gig matches today.",
+        );
+      }
+
+      function fakeSuccessStory() {
+        alert(
+          "📖 Success story:\n\nSarah from Entebbe started with one tailoring gig. After 6 weeks she has 8 regular clients and now earns UGX 900K+ monthly while training two other youth.\n\nYou can be next!",
+        );
+      }
+
+      function toggleMobileMenu() {
+        const menu = document.getElementById("mobile-menu");
+        const icon = document.getElementById("mobile-icon");
+        if (menu.classList.contains("hidden")) {
+          menu.style.display = "block";
+          icon.classList.replace("fa-bars", "fa-xmark");
+        } else {
+          menu.style.display = "none";
+          icon.classList.replace("fa-xmark", "fa-bars");
+        }
+      }
+
+      // Initial render
+      window.onload = () => {
+        renderGigs(allGigs);
+        renderBrowseProfiles(allProfiles);
+
+        console.log(
+          "%c✅ SkillNest Uganda website ready! Copy this full HTML into your index.html file.",
+          "background:#00b894;color:white;padding:2px 6px;border-radius:4px",
+        );
+      };
+    </script>
   </body>
 </html>

@@ -10,6 +10,16 @@ nav{
     justify-content: space-between;
 
 }
+.wrapper .content h1 {
+  font-size: 20px;
+  color: black;
+  background-color: lightblue;
+  display: inline-block;
+  padding: 12px 25px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
 
 ul{
     list-style: none;

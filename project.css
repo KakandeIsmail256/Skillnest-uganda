@@ -31,6 +31,12 @@ li{
     cursor: pointer;
     font-weight: 400;
 }
+nav ul li a{
+    text-decoration: none;
+}
+nav ul li a:hover{
+    color:red;
+}
  
 
 button{

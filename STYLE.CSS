@@ -1,203 +1,443 @@
-* {
-  margin: 0px;
-  padding: 0px;
-  box-sizing: border-box;
-  font-family: "Aerial", sans-serif;
+*{
+    margin: 2px;
+    padding: 2px;
+    box-sizing: border-box;
 }
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  background-color: #1c1c1e;
-  padding: 15px 75px;
-  color: #fff;
+
+nav{
+    display: flex;
+    background-color: rgba(242, 242, 240, 0.705);
+    justify-content: space-between;
+
 }
-.navbar .navbar-logo h1 {
-  font-size: 30px;
-  color: #10a37f;
-  margin-left: 25px;
+
+ul{
+    list-style: none;
+    display: flex;
+    gap: 4px;
 }
-.navbar ul {
-  display: flex;
-  list-style: none;
-  gap: 25px;
+
+li{
+    cursor: pointer;
+    font-weight: 400;
 }
-.navbar ul li a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 18px;
-  transition: 0.3s ease;
-  margin-left: 35px;
+
+button{
+    gap: 2px;
+    width: 5rem;
+    border: none;
+    padding: 2px;
+    height: 2rem;
+    transition: background-color 0.3s, transform 0.2s ease;
 }
-.navbar ul li a::before {
-  content: "";
-  position: absolute;
-  width: 0%;
-  height: 2px;
-  background-color: #10a37f;
-  bottom: -5px;
-  left: 0;
-  background-color: #10a37f;
-  transition: 0.3s ease;
-}
-.navbar ul li a:hover {
-  color: #10a37f;
-}
-.navbar ul li a:hover::before {
-  width: 100%;
-}
-button {
-  padding: 10px 20px;
-  background-color: #10a37f;
-  color: #fff;
-  border-radius: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 0.3s ease;
-  margin-right: 25px;
-  width: 90px;
-  padding: 10px;
-}
+
 button:hover {
-  background-color: #0e8c6b;
+    transform: scale(1.05);
 }
-button:active {
-  background-color: #0b6a52;
+
+.button:hover {
+  background-color: darkblue;
 }
-img {
-  width: 600%;
-  height: 600%;
+
+.login{
+    background-color: rgb(255, 196, 0);
+    
+}
+
+.signup{
+    background-color: rgb(0, 255, 115);
+}
+
+.hero{
+display: flex;
+margin-top: 4rem;
+justify-content: space-between;
+
+}
+
+.unlock{
+margin-top: 2rem;
+
+}
+
+.Oppourtunities{
+color: rgb(255, 196, 0);
+
+
+}
+
+.connecting{
+margin-top: 4rem;
+color: grey;
+font-size: large;
+width: 40rem;
+}
+
+.banner img{
+    width: 35rem;
+    margin-right:20px ;
+    height: 25rem;
+}
+
+.location {
+    width: 15rem;
+     border: ghostwhite;
+      padding: 4px;
+}
+.skill {
+    width: 15rem;
+     border: ghostwhite;
+     padding: 4px;
+}
+.budget {
+    width: 15rem;
+    margin-right: 2px;
+    border: ghostwhite;
+     padding: 4px;
+}
+
+.search{
+   background-color: rgb(0, 255, 115);
+   border-radius: 15px;
+}
+
+.searcharea{
+    width: 52rem;
+    background-color: ghostwhite;
+    border-radius: 15px;
+    
+ 
+}
+
+.mid-body{
+  display: flex;
+    justify-content: space-between;
+}
+
+.birungi{
+    width: 10rem;
+    border-radius: 4rem;
+}
+
+.aside1{
+    width: 70rem;
+    margin-top: 4rem;
+
+}
+
+.about{
+    display: flex;
+    margin-top: 4rem;
+}
+.aside2{
+
+
+}
+
+.amelody{
+    display: flex;
+    font-size: small;
+}
+.amelody p{
+    padding-top: 2rem;
+    color: grey;
+}
+
+
+
+.Rated{
+    background-color: gainsboro;
+    width: 20rem;
+    height: 10rem;
+    border-style: ridge
+    
+}
+
+.viewprofilebirungi{
+    ;
+}
+
+.viewprofile{
+     background-color: rgb(0, 255, 115);
+     margin-left: 10rem;
+     border-radius: 4px;
+     width: 8rem;
+     display: flex;
+     margin-bottom: 4rem;
+}
+
+.james{
+    display: flex;
+    background-color: gainsboro;
+    margin-top: 4rem;
+
+
+}
+
+.tames{
+
+padding-top: 6rem;
+}
+
+.plumber{
+ display: flex;
+
+
+}
+
+
+.plumber h3{
+    
+    padding-bottom: 4rem;
+
+
+
+}
+.plumber img{
+
+}
+
+    
+
+.plumber P{
+    
+
+}
+
+.View{
+    margin-left: 14rem;
+    width: 12rem;
+    background-color: rgb(0, 255, 115);
+    margin-bottom: 4rem;
+    border-radius: 4px;
+}
+
+.aside3{
+    width: 30rem;
+    background-color: gainsboro;
+
+}
+.aside3 img{
+    width: 28rem;
+    height: 15rem;
+}
+.ahmed p{
+    color: grey;
+}
+.ahmed{
+    justify-content: center;
+}
+
+.Engbutt{
+width: 12rem;
+background-color: rgb(0, 255, 115);
+margin-left: 12rem ;
+padding: 8px;
+border-radius: 4px;
+}
+
+.browse{
+    display: flex;
+    padding-top: 8rem;
+}
+.browse button{
+    margin-left: 24rem;
+}
+.brose{
+    padding-top: 4rem;
+}
+.brose select{
+    gap: 8rem;
+    width: 8rem;
+    
+}
+
+
+.skilled{
+    
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 4rem;
+}
+
+.skilled1, .skilled2, .skilled3, .skilled4 {
+    position: relative;
+    width: 20rem;
+    height: 15rem;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+
+.skilled1 img, .skilled2 img, .skilled3 img, .skilled4 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.skilled1 > div, .skilled2 > div, .skilled3 > div, .skilled4 > div {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.2));
+    color: white;
+    z-index: 2;
+}
+
+.skilled1 > div h3, .skilled2 > div h3, .skilled3 > div h3, .skilled4 > div h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    text-shadow: 0 0 6px rgba(0,0,0,0.8);
+}
+
+.skilled1 > div p, .skilled2 > div p, .skilled3 > div p, .skilled4 > div p {
+    margin: 0;
+    color: white;
+    text-shadow: 0 0 6px rgba(0,0,0,0.7);
+}
+
+.skilled button{
+ background-color: rgb(0, 255, 115);
+}
+.skilled p{
+ color: grey;
+}
+
+.salary p{
+    font-weight: bold;
+    color: black;
+}
+
+.about{
+padding-top: 4rem;
+}
+
+.about img{
+    width: 10rem;
+    border-radius: 15px;
+    object-fit: cover;
+    aspect-ratio: 1/1;
+}
+.about p{
+    padding-top: 2rem;
+    border-radius: 15px;
+}
+
+footer{
+    display: flex;
+    justify-content: space-between;
+    
+}
+.footer1{
+    width: 50%;
+    border: 2px;
+    background-color: black;
+}
+
+.imagecontainer {
+  position: relative;
+  width: 100%;
+  max-width: 20rem;
+  overflow: hidden;
+  color: white;
+}
+
+.imagecontainer img{
+    width: 40%;
+}
+
+.imagecontainer img {
+  width: 100%;
+  height: auto;
+  display: block;
   object-fit: cover;
-  max-width: 600px;
-  vertical-align: left;
-  margin-left: 100px;
-  padding: 10px 25px;
-  max-height: 690px;
-}
-.wrapper {
-  display: flex;
-  justify-content: space-around;
-  padding: 0px 15px;
-  flex-wrap: wrap;
-  align-items: left-center;
-  gap: 0rem;
-}
-.wrapper .content {
-  max-width: 800px;
-  padding: 10px;
-}
-.wrapper .content h1 {
-  font-size: 50px;
-  color: #10a37f;
-  margin-bottom: 20px;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  padding-top: 1px;
-}
-.wrapper .content p {
-  font-size: 25px;
-  color: #1c1c1e;
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-.search-container {
-  display: flex;
-  gap: 0px;
-  margin: 80px 20px;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 40px;
-  box-sizing: border-box;
-  border: 3px solid #007bff;
-  border-width: 6px 3px 3px 6px;
-  border-style: dotted;
-  width: 780px;
-}
-.search-container input {
-  flex: 1;
-  padding: 10px;
-  border: 4px solid #ccc;
-  border-radius: 5px;
-  font-size: 15px;
-  font-family: "Times New Roman", Times, serif;
-  font-weight: bold;
-  font-display: block;
-}
-.search-container button {
-  padding: 10px 20px;
-  background-color: #10a37f;
-  color: #fff;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-.search-container button:hover {
-  background-color: #218838;
-}
-.search-container button:active {
-  background-color: red;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  background: #f9f9f9;
-  color: #333;
-  padding: 20px;
-}
-header {
-  text-align: center;
-  margin-bottom: 20px;
+.imagecontainer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.65));
+  z-index: 1;
 }
 
-header h1 {
-  color: #2c3e50;
-  margin-bottom: 20px;
-  font-weight: bold;
-  font-family:
-    "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans",
-    Arial, sans-serif;
-}
-header p {
-  max-width: 500px;
-  margin: auto;
-  text-align: left;
-  font-weight: bold;
-  font-size: 18px;
-  font-family:
-    "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans",
-    Arial, sans-serif;
+.sign1  {
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  margin-top: 10px;
+  z-index: 2;
+  text-shadow: 0 0 8px rgba(0,0,0,0.75);
+  padding-top: 10rem;
+  width: 20rem;
 }
 
-.container {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding: 40px;
+.sign1 button{
+    border-radius: 5px;
+    width: 10rem;
+    background-color: rgb(0, 255, 115)
 }
 
-.card {
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  width: 250px;
-  padding: 20px;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: 0.3s;
+.sign1 h3{
+font-size: x-large;
+
+}
+.imagecontainer h4 {
+  top: 1rem;
+  font-size: 1.25rem;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+.imagecontainer p {
+  padding: 2px;
+  font-size: 0.9rem;
 }
 
-.card h3 {
-  margin-bottom: 10px;
+.footer2{
+    justify-content: space-between;
+    background-color: rgb(4, 38, 39);
+    width: 50%;
+}
+.footer1 img{
+   width: 20rem;
 }
 
-.card p {
-  color: #555;
-  font-size: 14px;
+
+
+.create{
+
+
+}
+.footer2 img{
+   width: 38rem;
+   height: 30rem;
+}
+
+/* Navbar signup button */
+.auth .signup {
+  position: static;
+  margin: 0 0 0 0.5rem;
+  width: auto;
+  padding: 0.4rem 0.8rem;
+  background-color: rgb(0, 255, 115);
+  color: #000;
+  border-radius: 4px;
+  text-shadow: none;
+  z-index: auto;
+}
+
+/* Footer signup overlay container (if needed) */
+.signup1 {
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  margin-top: 10px;
+  z-index: 2;
+  text-shadow: 0 0 8px rgba(0,0,0,0.75);
+  padding-top: 10rem;
+  width: 20rem;
 }
